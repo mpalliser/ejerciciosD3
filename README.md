@@ -1,3 +1,11 @@
 # Ejercicios D3
 
-En este repositorio colgare los ejercicios relacionados con d3 realizados en el modulo de desarrollo de aplicaciones web (Borja Moll)
+En este repositorio colgare los ejercicios relacionados con __D3 (Data-Driven document)__ realizados durante el primer curso de desarrollo de aplicaciones web en (IES Borja Moll).
+
+Estos ejercicios engloban los siguientes elementos:
+
+* HTML
+* CSS
+* SVG
+* DOM
+* Javascript
