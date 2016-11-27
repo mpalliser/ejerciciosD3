@@ -9,53 +9,55 @@
 </head>
 <body>
     <script type="text/javascript">
+//Ancho y Altura
+var width = 800;
+var height = 200;
+var barPadding = 5;
+var dataset = [ 5, 10, 13, 19, 25, 28, 22, 18, 23, 13, 11, 12, 15, 20, 22, 17, 22, 30, 34, 26 ];
 
-        //Ancho y Altura
-        var w = 1000;
-        var h = 200;
-        var barPadding = 1;
-        var dataset = [ 5, 10, 13, 19, 21, 25, 22, 18, 15, 13, 11, 12, 15, 20, 18, 17, 16, 18, 23, 25 ];
+//Creará un elemento SVG 
+var svg = d3.select("body")
+  .append("svg")
+  .attr("width", width)
+  .attr("height", height);
 
-        //Creará un elemento SVG 
-        var svg = d3.select("body")
-                .append("svg")
-                .attr("width", w)
-                .attr("height", h);
+svg.selectAll("rect")
+  .data(dataset)
+  .enter()
+  .append("rect")
+  .attr("x", function(dato, i) {
+  return i * (width / dataset.length);
+})
+  .attr("y", function(dato) {
+  return height - (dato * 4); 
+})
+  .attr("width", width / dataset.length - barPadding)
+  .attr("height", function(dato) {
+  return dato * 4;
+})
+  .attr("fill", function(dato) {
+  return "rgb(0, 153, " + (dato * 7) + ")";
+});
+svg.selectAll("text")
+  .data(dataset)
+  .enter()
+  .append("text")
+  .text(function(dato){
+  return dato;
+})
+  .attr("text-anchor", "middle")
+  .attr("x", function(dato, i) {
+  return i * (width / dataset.length) + (width / dataset.length - barPadding) / 2;
+})
+  .attr("y", function(dato) {
+  return height - (dato * 4) + 15;
+})
+  .attr("font-family", "sans-serif")
+  .attr("font-size", "11px")
+  .attr("fill", function(dato) {
+  return "rgb(51, 255, " + (dato * 10) + ")";
+});
 
-        svg.selectAll("rect")
-                .data(dataset)
-                .enter()
-                .append("rect")
-                .attr("x", function(d, i) {
-                    return i * (w / dataset.length);
-                })
-                .attr("y", function(d) {
-                    return h - (d * 4); //altura enos el dato de dataset
-                })
-                .attr("width", w / dataset.length - barPadding)
-                .attr("height", function(d) {
-                    return d * 4;
-                })
-                .attr("fill", function(d) {
-                    return "rgb(0, 153, " + (d * 10) + ")";
-                });
-        svg.selectAll("text")
-                .data(dataset)
-                .enter()
-                .append("text")
-                .text(function(d){
-                    return d;
-                })
-                .attr("text-anchor", "middle")
-                .attr("x", function(d, i) {
-                    return i * (w / dataset.length) + (w / dataset.length - barPadding) / 2;
-                })
-                .attr("y", function(d) {
-                    return h - (d * 4) + 15;
-                })
-                .attr("font-family", "sans-serif")
-                .attr("font-size", "11px")
-                .attr("fill", "blue");
     </script>
 </body>
 </html>  
